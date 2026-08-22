@@ -1,0 +1,159 @@
+INVESTIGACIÓN REACT Y FIREBASE
+
+================================================================================
+1. ¿QUÉ ES JSX EN REACT? CARACTERÍSTICAS Y UTILIDAD
+================================================================================
+
+¿Qué es JSX?
+JSX (JavaScript XML) es una extensión de la sintaxis de JavaScript creada para React. Permite escribir una estructura similar a HTML directamente dentro del código JavaScript. Aunque parece HTML, por debajo es transformado por transpiladores como Babel en llamadas a funciones JS tradicionales (React.createElement).
+
+Características principales:
+1. Sintaxis declarativa: Permite describir de forma visual y clara cómo debe verse la interfaz de usuario.
+2. Inserción de código dinámico: Permite embeber cualquier expresión válida de JavaScript dentro del marcado utilizando llaves `{}`.
+3. Reglas estrictas de cierre: Todas las etiquetas deben cerrarse obligatoriamente (por ejemplo, `<br />` o `<img />`).
+4. Atributos en CamelCase: Debido a que JSX se convierte en JavaScript, los atributos HTML usan convenciones de JS. Por ejemplo, `class` pasa a ser `className` y `for` pasa a ser `htmlFor`.
+5. Nodo raíz único: Un bloque de JSX debe retornar un único elemento padre o raíz (se pueden usar Fragmentos `<>...</>` si no se desea agregar elementos DOM extra).
+
+¿Para qué sirve?
+Sirve para simplificar la creación de la interfaz de usuario, unificando la lógica de renderizado y el marcado en un solo lugar de manera legible, mantenible y estructurada.
+
+--------------------------------------------------------------------------------
+EJEMPLO EN CÓDIGO REACT (JSX)
+--------------------------------------------------------------------------------
+
+import React from 'react';
+
+function SaludoDinamico() {
+  const usuario = "Valentin";
+  const esTurnoManana = true;
+
+  return (
+    <div className="tarjeta-saludo">
+      <h1>¡Hola, {usuario}!</h1>
+      <p>
+        Estado: {esTurnoManana ? "Turno Mañana activo" : "Turno Tarde activo"}
+      </p>
+    </div>
+  );
+}
+
+export default SaludoDinamico;
+
+Explicación del ejemplo:
+- Se define una constante `usuario` y un booleano `esTurnoManana`.
+- Dentro de las etiquetas JSX (`<div>`, `<h1>`, `<p>`), se utilizan las llaves `{}` para evaluar variables e instrucciones JavaScript dinámicas (como el operador ternario).
+- Se utiliza `className` en lugar de `class` para definir clases CSS en el marcado.
+
+
+================================================================================
+2. ¿QUÉ SON LOS COMPONENTES EN REACT? CARACTERÍSTICAS Y UTILIDAD
+================================================================================
+
+¿Qué son los Componentes?
+Los componentes son los bloques de construcción fundamentales de cualquier aplicación en React. Son piezas independientes, reutilizables y aisladas de la interfaz de usuario que retornan elementos JSX para describir qué debe mostrarse en pantalla.
+
+Características principales:
+1. Reutilización: Un mismo componente se puede usar múltiples veces en distintas partes de la aplicación.
+2. Modularidad: Facilitan la división del desarrollo en piezas pequeñas, manejables y fáciles de probar.
+3. Basados en Funciones (o Clases): En el React moderno se utilizan principalmente componentes funcionales junto con Hooks.
+4. Estado (State): Pueden gestionar sus propios datos internos dinámicos utilizando hooks como `useState`.
+5. Encapsulamiento: Mantiene acoplada su lógica con su renderizado, facilitando el mantenimiento.
+
+¿Para qué sirve?
+Sirven para estructurar aplicaciones complejas en componentes más pequeños y ordenados, facilitando el trabajo en equipo, el mantenimiento del código y la reutilización de la interfaz.
+
+--------------------------------------------------------------------------------
+EJEMPLO EN CÓDIGO REACT (COMPONENTE)
+--------------------------------------------------------------------------------
+
+import React, { useState } from 'react';
+
+function Contador() {
+  const [contador, setContador] = useState(0);
+
+  const incrementar = () => {
+    setContador(contador + 1);
+  };
+
+  return (
+    <div style={{ padding: '20px', border: '1px solid #ccc' }}>
+      <h2>Contador de Clics</h2>
+      <p>Has hecho clic {contador} veces.</p>
+      <button onClick={incrementar}>Incrementar</button>
+    </div>
+  );
+}
+
+export default Contador;
+
+Explicación del ejemplo:
+- `Contador` es un componente funcional autosuficiente.
+- Maneja un estado local `contador` utilizando el hook `useState`.
+- Cada vez que el usuario presiona el botón "Incrementar", el estado cambia y React re-renderiza automáticamente la interfaz para reflejar el valor actualizado.
+
+
+================================================================================
+3. ¿QUÉ SON LOS PROPS EN REACT? CARACTERÍSTICAS Y UTILIDAD
+================================================================================
+
+¿Qué son las Props?
+"Props" es la abreviatura de "properties" (propiedades). Son el mecanismo mediante el cual los componentes de React reciben datos e instrucciones desde un componente padre.
+
+Características principales:
+1. Inmutables (Sólo lectura): Un componente hijo nunca debe modificar directamente las props que recibe de un padre.
+2. Flujo Unidireccional: Los datos viajan de arriba hacia abajo (de componentes padres a componentes hijos).
+3. Flexibilidad de Tipos: Pueden ser de cualquier tipo de dato en JS: strings, números, objetos, arrays, funciones de callback e incluso otros componentes JSX.
+4. Parámetros de Función: En componentes funcionales, las props son recibidas como un objeto en el primer argumento de la función.
+
+¿Para qué sirve?
+Sirven para personalizar, parametrizar y hacer dinámicos a los componentes, permitiendo reutilizar una misma estructura visual para mostrar información diferente según los datos pasados.
+
+--------------------------------------------------------------------------------
+EJEMPLO EN CÓDIGO REACT (PROPS)
+--------------------------------------------------------------------------------
+
+import React from 'react';
+
+// Componente Hijo
+function TarjetaUsuario(props) {
+  return (
+    <div className="tarjeta">
+      <h3>Nombre: {props.nombre}</h3>
+      <p>Rol: {props.rol}</p>
+    </div>
+  );
+}
+
+// Componente Padre
+function ListaUsuarios() {
+  return (
+    <div>
+      <h2>Lista de Colaboradores</h2>
+      <TarjetaUsuario nombre="Valentin" rol="Administrador de Base de Datos" />
+      <TarjetaUsuario nombre="Sofía" rol="Desarrolladora Frontend" />
+    </div>
+  );
+}
+
+export default ListaUsuarios;
+
+Explicación del ejemplo:
+- `ListaUsuarios` (Padre) renderiza dos instancias de `TarjetaUsuario` (Hijo).
+- Le pasa información diferente a través de las propiedades `nombre` y `rol`.
+- `TarjetaUsuario` recibe el objeto `props` y utiliza `props.nombre` y `props.rol` dentro del JSX para renderizar el contenido específico.
+
+
+================================================================================
+4. ¿QUÉ ES FIREBASE? CARACTERÍSTICAS
+================================================================================
+
+¿Qué es Firebase?
+Firebase es una plataforma de desarrollo de aplicaciones móviles y web creada por Google. Se clasifica como BaaS (Backend as a Service / Backend como Servicio), permitiendo a los desarrolladores crear aplicaciones dinámicas sin necesidad de configurar y gestionar una infraestructura de servidor propia desde cero.
+
+Características principales:
+1. Realtime Database y Firestore: Bases de datos NoSQL basadas en documentos y JSON que permiten la sincronización de datos en tiempo real con los clientes conectados.
+2. Autenticación (Firebase Auth): Sistema listo para usar que soporta inicio de sesión mediante email/contraseña, Google, GitHub, entre otros.
+3. Hosting rápido y seguro: Alojamiento estático y de aplicaciones web de alto rendimiento respaldado por la CDN global de Google.
+4. Cloud Storage: Almacenamiento seguro y escalable para archivos generados por usuarios (imágenes, videos, documentos).
+5. Cloud Functions: Código backend ejecutable en entornos serverless sin administrar servidores físicos o virtuales.
+6. Integración nativa con React: Cuenta con SDKs sencillos de configurar e integrar mediante JavaScript/React.
