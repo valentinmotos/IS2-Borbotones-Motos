@@ -1,0 +1,37 @@
+¿Qué es React?
+    React es una biblioteca de JavaScript utilizada principalmente para crear interfaces de usuario (UI), especialmente para aplicaciones web interactivas.
+    Fue desarrollada originalmente por Facebook (actualmente Meta) y se basa en la creación de componentes reutilizables.
+
+¿Para qué sirve? 
+    React sirve principalmente para desarrollar interfaces web dinámicas e interactivas. Por ejemplo, permite crear: Tiendas online, Redes sociales, Paneles administrativos, Sistemas de gestión, Aplicaciones web, Formularios interactivos.
+
+¿Cuáles son sus características?
+    1. Componentes. Es probablemente su característica más importante. La interfaz se divide en componentes reutilizables.
+    2. JSX. React utiliza JSX, una sintaxis que permite escribir una estructura similar a HTML dentro de JavaScript.
+    3. Virtual DOM. React utiliza un Virtual DOM para optimizar las actualizaciones de la interfaz.
+    4. Reutilización de componentes. Los componentes pueden utilizarse en diferentes partes de una aplicación.
+    5. Manejo de estado. React permite manejar información que puede cambiar durante la ejecución de la aplicación.
+    6.Unidireccionalidad de datos. Los datos normalmente fluyen desde los componentes padres hacia los hijos.
+
+¿Cuáles son sus ventajas y desventajas? 
+
+Ventajas de React
+    - Reutilización de componentes: permite crear componentes que pueden reutilizarse en diferentes partes de una aplicación, reduciendo la duplicación de código.
+    - Buen rendimiento: utiliza un Virtual DOM que permite actualizar de manera eficiente las partes de la interfaz que han cambiado.
+    - Facilidad de mantenimiento: la división de la aplicación en componentes facilita la organización, comprensión y mantenimiento del código.
+    - Gran comunidad: cuenta con una comunidad amplia y una gran cantidad de documentación, tutoriales y recursos disponibles.
+    - Amplio ecosistema: existen numerosas bibliotecas y herramientas compatibles con React para agregar funcionalidades adicionales.
+    - Flexibilidad: puede utilizarse junto con diferentes tecnologías de backend, como Node.js, Django, Java Spring o .NET.
+    - Escalabilidad: permite desarrollar tanto aplicaciones pequeñas como aplicaciones web grandes y complejas.
+
+Desventajas de React
+    - Curva de aprendizaje: para utilizar React correctamente es necesario tener conocimientos de JavaScript, HTML y CSS, además de aprender conceptos propios de React.
+    - Complejidad del ecosistema: existen muchas bibliotecas y herramientas complementarias, por lo que puede resultar difícil decidir cuáles utilizar.
+    - Cambios frecuentes: el ecosistema de React y JavaScript evoluciona rápidamente, por lo que algunas herramientas y prácticas pueden quedar obsoletas.
+    - Dependencia de otras herramientas: React se enfoca principalmente en la interfaz de usuario, por lo que para desarrollar una aplicación completa generalmente se necesitan otras bibliotecas o tecnologías.
+    - SEO: las aplicaciones que utilizan renderizado del lado del cliente pueden presentar dificultades para la optimización en buscadores si no se utilizan técnicas adicionales de renderizado.
+    - Mayor complejidad en proyectos grandes: si la aplicación no está correctamente estructurada, la gran cantidad de componentes y estados puede dificultar su mantenimiento.
+
+¿Qué es React Booststrap? 
+    React Bootstrap es una biblioteca de componentes de interfaz para React basada en Bootstrap. Bootstrap proporciona componentes visuales como: Botones, Formularios, Navbar, Cards, Modales, Alertas, Tablas, Grillas.
+    React Bootstrap adapta esos componentes para que puedan utilizarse directamente como componentes React.
