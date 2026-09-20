@@ -1,0 +1,44 @@
+EJERCICIO 5 - INVESTIGACION INDIVIDUAL DE REACT
+
+1. REACT DOM
+
+React DOM es el paquete que conecta React con el navegador. Proporciona createRoot, que toma un elemento real del HTML y monta allí el árbol de componentes React. React compara los cambios del árbol virtual y actualiza sólo los nodos necesarios del DOM real.
+
+Ejemplo:
+
+import { createRoot } from 'react-dom/client';
+import App from './App.jsx';
+
+const contenedor = document.getElementById('root');
+const root = createRoot(contenedor);
+root.render(<App />);
+
+El archivo HTML contiene <div id="root"></div>. createRoot vincula ese elemento con la aplicación React y render muestra el componente App.
+
+2. REACT ROUTER
+
+React Router es una biblioteca para administrar navegación y rutas en aplicaciones React de una sola página. Permite mostrar componentes diferentes según la URL sin recargar todo el documento. Sus elementos habituales son BrowserRouter, Routes, Route, Link y useNavigate.
+
+Ejemplo:
+
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+
+function Inicio() { return <h1>Inicio</h1>; }
+function Productos() { return <h1>Productos</h1>; }
+
+function App() {
+  return (
+    <BrowserRouter>
+      <nav>
+        <Link to="/">Inicio</Link>
+        <Link to="/productos">Productos</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Inicio />} />
+        <Route path="/productos" element={<Productos />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+BrowserRouter observa la URL, Link navega sin recargar el navegador y Routes selecciona el Route cuyo path coincide.
