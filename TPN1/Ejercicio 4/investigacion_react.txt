@@ -1,0 +1,71 @@
+EJERCICIO 4 - INVESTIGACION INDIVIDUAL DE REACT
+
+1. ESTADOS EN REACT
+
+Un estado (state) es información interna y mutable de un componente. Cuando el estado cambia, React vuelve a renderizar el componente para mostrar el nuevo resultado. El estado debe actualizarse mediante su función setter y no modificando directamente la variable.
+
+Ejemplo:
+
+import { useState } from 'react';
+
+function Contador() {
+  const [cantidad, setCantidad] = useState(0);
+
+  return (
+    <button onClick={() => setCantidad(cantidad + 1)}>
+      Clics: {cantidad}
+    </button>
+  );
+}
+
+En este caso cantidad es el estado inicializado en cero. setCantidad cambia el estado y provoca un nuevo renderizado.
+
+2. EVENTOS EN REACT
+
+Los eventos son acciones del usuario o del navegador, como click, change, submit, focus o keyDown. React los recibe mediante propiedades en camelCase, por ejemplo onClick y onChange, y se les asigna una función manejadora.
+
+Ejemplo:
+
+function Formulario() {
+  function manejarEnvio(evento) {
+    evento.preventDefault();
+    alert('Formulario enviado');
+  }
+
+  return (
+    <form onSubmit={manejarEnvio}>
+      <input onChange={(evento) => console.log(evento.target.value)} />
+      <button type="submit">Enviar</button>
+    </form>
+  );
+}
+
+preventDefault evita que el navegador recargue la página y onChange permite reaccionar a cada cambio del campo.
+
+3. HOOKS EN REACT
+
+Los Hooks son funciones especiales que permiten utilizar estado, efectos y otras capacidades de React dentro de componentes funcionales. Deben llamarse en el nivel superior del componente, no dentro de if, for ni funciones anidadas.
+
+Hooks habituales:
+- useState: administra estado local.
+- useEffect: ejecuta efectos secundarios, por ejemplo una consulta HTTP.
+- useContext: consume datos compartidos mediante Context.
+- useRef: conserva una referencia mutable sin provocar un renderizado.
+
+Ejemplo con useEffect:
+
+import { useEffect, useState } from 'react';
+
+function Usuario() {
+  const [nombre, setNombre] = useState('Cargando...');
+
+  useEffect(() => {
+    fetch('/api/usuario')
+      .then((respuesta) => respuesta.json())
+      .then((datos) => setNombre(datos.nombre));
+  }, []);
+
+  return <p>Usuario: {nombre}</p>;
+}
+
+El arreglo vacío indica que el efecto se ejecuta después del primer renderizado. Cuando la respuesta llega, setNombre actualiza el estado.
