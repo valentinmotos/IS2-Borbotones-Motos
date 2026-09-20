@@ -1,0 +1,46 @@
+EJERCICIO 6 - INVESTIGACION INDIVIDUAL DE REACT
+
+1. HOOKS DE RENDIMIENTO
+
+Los Hooks de rendimiento ayudan a evitar cálculos o renderizados innecesarios. Los principales son useMemo, useCallback y useTransition. Deben usarse sólo cuando existe un costo medible o una actualización que puede diferirse; no reemplazan el diseño correcto de los componentes.
+
+useMemo conserva el resultado de un cálculo hasta que cambian sus dependencias:
+
+import { useMemo, useState } from 'react';
+
+function Productos({ productos }) {
+  const [busqueda, setBusqueda] = useState('');
+  const filtrados = useMemo(
+    () => productos.filter((producto) => producto.nombre.includes(busqueda)),
+    [productos, busqueda]
+  );
+  return <ul>{filtrados.map((producto) => <li key={producto.id}>{producto.nombre}</li>)}</ul>;
+}
+
+useCallback conserva una función para que un componente hijo memoizado no reciba una referencia nueva en cada render. useTransition permite marcar una actualización como no urgente, por ejemplo filtrar una lista grande mientras el campo sigue respondiendo.
+
+2. CONTEXTO EN REACT
+
+Context permite compartir un valor entre componentes sin pasar props manualmente por cada nivel intermedio. Se crea con createContext, se provee con Provider y se consume con useContext.
+
+import { createContext, useContext } from 'react';
+
+const TemaContext = createContext('claro');
+
+function App() {
+  return (
+    <TemaContext.Provider value="oscuro">
+      <Panel />
+    </TemaContext.Provider>
+  );
+}
+
+function Panel() {
+  const tema = useContext(TemaContext);
+  return <section className={tema}>Contenido</section>;
+}
+
+Diferencias con props:
+- Props representan datos explícitos que un componente padre entrega a un hijo.
+- Context representa datos compartidos por muchos componentes, como tema, usuario autenticado o idioma.
+- Las props hacen visible el contrato de una función de componente; Context reduce el pasaje repetitivo, pero puede ocultar dependencias si se abusa.
