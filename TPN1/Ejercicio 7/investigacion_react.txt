@@ -1,0 +1,43 @@
+EJERCICIO 7 - INVESTIGACION INDIVIDUAL DE REACT
+
+1. JEST
+
+Jest es un framework de pruebas para JavaScript. Permite definir pruebas unitarias y de integración, realizar aserciones, crear mocks y generar reportes de cobertura. Una prueba debe comprobar un comportamiento observable y ser independiente de las demás.
+
+Ejemplo:
+
+function sumar(a, b) {
+  return a + b;
+}
+
+test('suma dos números', () => {
+  expect(sumar(2, 3)).toBe(5);
+});
+
+El bloque test define el caso y expect(...).toBe(...) verifica el resultado esperado.
+
+2. REACT TESTING LIBRARY
+
+React Testing Library es una biblioteca para probar componentes React desde la perspectiva del usuario. Prioriza buscar elementos por texto, rol accesible o etiqueta y simular interacciones reales, en lugar de inspeccionar detalles internos del componente.
+
+Ejemplo:
+
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import Contador from './Contador';
+
+test('incrementa el contador al presionar el botón', async () => {
+  const user = userEvent.setup();
+  render(<Contador />);
+
+  await user.click(screen.getByRole('button', { name: /incrementar/i }));
+
+  expect(screen.getByText('Total: 1')).toBeInTheDocument();
+});
+
+render monta el componente en un DOM de prueba. getByRole busca el botón como lo haría una persona que usa un lector de pantalla. userEvent ejecuta el click y la aserción verifica el resultado visible.
+
+Diferencia principal:
+- Jest aporta el ejecutor de pruebas, mocks y aserciones.
+- React Testing Library aporta utilidades para renderizar componentes y consultar el DOM.
+- En un proyecto React suelen utilizarse juntos.
